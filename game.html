@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <title>Quiz App-Play</title>
 </head>
 
 <body>
     <div class="container">
-        <div id="game" class="justify-content flex-column">
+        <div id="loader"></div>
+        <div id="game" class="justify-content flex-column hidden">
             <div id="hud">
                 <div id="hud-item">
                     <p class="hud-prefix">
@@ -32,14 +34,14 @@
                 </div>
             </div>
             <h2 id="question">
-                What is the answer of this Question?
+                
             </h2>
             <div class="choice-container">
                 <p class="choice-prefix">
                     A
                 </p>
                 <p class="choice-text" data-number="1">
-                    choice 1
+                  
                 </p>
             </div>
             <div class="choice-container">
@@ -47,15 +49,14 @@
                     B
                 </p>
                 <p class="choice-text" data-number="2">
-                    choice 2
-                </p>
+                  </p>
             </div>
             <div class="choice-container">
                 <p class="choice-prefix">
                     C
                 </p>
                 <p class="choice-text" data-number="3">
-                    choice 3
+                  
                 </p>
             </div>
             <div class="choice-container">
@@ -63,7 +64,7 @@
                     D
                 </p>
                 <p class="choice-text" data-number="4">
-                    choice 4
+                  
                 </p>
             </div>
         </div>

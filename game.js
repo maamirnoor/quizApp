@@ -2,58 +2,93 @@ const question = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName('choice-text'));
 const questionCounterText = document.getElementById('questionCounter');
 const scoreText = document.getElementById('score');
+const loader =  document.getElementById("loader");
+const game = document.getElementById("game");
+
 let currentQuestion = {};
 let acceptingAnswers = true;
 let score = 0;
 let availableQuestions = [];
 
     let questions = [
-    {
-        question: "Sunset from?",
-        choice1: "East",
-        choice2: "West",
-        choice3: "North",
-        choice4: "South",
-        answer: 1
-    },
-    {
-        question: "The term ‘Computer’ is derived from__________?",
-        choice1: "Latin",
-        choice2: "German",
-        choice3: "Arabic",
-        choice4: "French",
-        answer: 1
-    },
-    {
-        question: "Who is the father of Computer?",
-        choice1: "Allen Turing",
-        choice2: "Charles Babbage",
-        choice3: "Simur Cray",
-        choice4: "Augusta Adaming",
-        answer: 2
-    },
-    {
-        question: "The basic operations performed by a computer are__________?",
-        choice1: "Arithmetic operation",
-        choice2: " Logical operation",
-        choice3: " Storage and relative",
-        choice4: "All the above",
-        answer: 4
-    },
-    {
-        question: "Who is the father of Internet ?",
-        choice1: "Chares Babbage",
-        choice2: "Vint Cerf",
-        choice3: "Denis Riche",
-        choice4: "Martin Cooper",
-        answer: 2
-    },
-    //Constants
-    //    const CORRET_BONUS =10;
-
-    
-
+    // {
+    //     question: "Sunset from?",
+    //     choice1: "East",
+    //     choice2: "West",
+    //     choice3: "North",
+    //     choice4: "South",
+    //     answer: 1
+    // },
+    // {
+    //     question: "The term ‘Computer’ is derived from__________?",
+    //     choice1: "Latin",
+    //     choice2: "German",
+    //     choice3: "Arabic",
+    //     choice4: "French",
+    //     answer: 1
+    // },
+    // {
+    //     question: "Who is the father of Computer?",
+    //     choice1: "Allen Turing",
+    //     choice2: "Charles Babbage",
+    //     choice3: "Simur Cray",
+    //     choice4: "Augusta Adaming",
+    //     answer: 2
+    // },
+    // {
+    //     question: "The basic operations performed by a computer are__________?",
+    //     choice1: "Arithmetic operation",
+    //     choice2: " Logical operation",
+    //     choice3: " Storage and relative",
+    //     choice4: "All the above",
+    //     answer: 4
+    // },
+    // {
+    //     question: "Who is the father of Internet ?",
+    //     choice1: "Chares Babbage",
+    //     choice2: "Vint Cerf",
+    //     choice3: "Denis Riche",
+    //     choice4: "Martin Cooper",
+    //     answer: 2
+    // },
+    // //Constants
+    // //    const CORRET_BONUS =10;
 ]
+
+//JSON
+
+fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple")
+.then( res=>{
+    return res.json();
+})
+.then(loadedQuestions=>{
+    console.log(loadedQuestions.results);
+    questions = loadedQuestions.results.map( loadedQuestion=> {
+        const formattedQuestion = {
+            question:loadedQuestion.question
+        };
+
+        const answerChoices = [...loadedQuestion.incorrect_answers];
+        formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
+        answerChoices.splice(
+            formattedQuestion.answer-1,
+            0,
+            loadedQuestion.correct_answer
+            );
+            answerChoices.forEach((choice, index)=>{
+                formattedQuestion["choice"+(index+1)]=choice;         
+    });
+    return formattedQuestion;    
+});
+    // questions = loadedQuestions;
+    // game.classList.remove('hidden');
+    // loader.classList.add('hidden');
+    startGame();
+})
+.catch(err=>{
+    console.error(err);
+});
+
 //constants
 const CORRET_BONUS=10;
 const MAX_QUESTION=5;
@@ -64,6 +99,8 @@ startGame=()=>{
     availableQuestions=[...questions];
     //console.log(availableQuestions);
     getNewQuestion();
+    game.classList.remove('hidden');
+    loader.classList.add('hidden');
 };
 getNewQuestion = ()=>{
     if(availableQuestions.length===0||questionCounter>=MAX_QUESTION){
@@ -121,4 +158,3 @@ incrementScore = num =>{
     score+=num;
     scoreText.innerText=score;
 };
-startGame();

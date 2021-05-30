@@ -1,0 +1,42 @@
+[
+    {
+        "question": "Sunset from?",
+        "choice1": "East",
+        "choice2": "West",
+        "choice3": "North",
+        "choice4": "South",
+        "answer": 1
+    },
+    {
+        "question": "The term ‘Computer’ is derived from__________?",
+        "choice1": "Latin",
+        "choice2": "German",
+        "choice3": "Arabic",
+        "choice4": "French",
+        "answer": 1
+    },
+    {
+        "question": "Who is the father of Computer?",
+        "choice1": "Allen Turing",
+        "choice2": "Charles Babbage",
+        "choice3": "Simur Cray",
+        "choice4": "Augusta Adaming",
+        "answer": 2
+    },
+    {
+        "question": "The basic operations performed by a computer are__________?",
+        "choice1": "Arithmetic operation",
+        "choice2": " Logical operation",
+        "choice3": " Storage and relative",
+        "choice4": "All the above",
+        "answer": 4
+    },
+    {
+        "question": "Who is the father of Internet ?",
+        "choice1": "Chares Babbage",
+        "choice2": "Vint Cerf",
+        "choice3": "Denis Riche",
+        "choice4": "Martin Cooper",
+        "answer": 2
+    }
+]
